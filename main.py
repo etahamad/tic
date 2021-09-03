@@ -1,7 +1,10 @@
 import itertools
+from colorama import Fore, Style, init
+
+init()
 
 
-def win(current_game):
+def win():
     def all_same(l):
         if l.count(l[0]) == len(l) and l[0] != 0:
             return True
@@ -47,22 +50,30 @@ def win(current_game):
 def game_board(game_map, player=0, row=0, column=0, just_display=False):
     try:
         if game_map[row][column] != 0:
-            print("Tis position has been already played in! Choose another!")
+            print(Fore.RED + 'This position has been already played in! Choose another!' + Style.RESET_ALL)
             return game_map, False
         print("   " + "  ".join([str(i) for i in range(len(game_map))]))  # old is: print("   0  1  2")
         if not just_display:
             game_map[row][column] = player
-        for count, row in enumerate(game):
-            print(count, row)
+        for count, row in enumerate(game_map):
+            colored_row = ""
+            for item in row:
+                if item == 0:
+                    colored_row += "   "
+                elif item == 1:
+                    colored_row += Fore.GREEN + ' X ' + Style.RESET_ALL
+                elif item == 2:
+                    colored_row += Fore.MAGENTA + ' O ' + Style.RESET_ALL
+            print(count, colored_row)
         return game_map, True
 
     # error handling
     except IndexError as e:
-        print("Error: make sure you inout column as 0 1 or 2,", e)
+        print(Fore.RED + 'Error: make sure you inout column as 0 1 or 2,', e + Style.RESET_ALL)
         return game_map, False
 
     except Exception as e:
-        print("Something went very wrong!", e)
+        print(Fore.RED + 'Something went very wrong!', e + Style.RESET_ALL)
         return game_map, False
 
 
@@ -76,21 +87,25 @@ while play:
     player_choice = itertools.cycle([1, 2])
     while not game_won:
         current_player = next(player_choice)
-        print(f"Current Player: {current_player}")
+        if current_player == 1:
+            current_player_colored = Fore.GREEN + 'X' + Style.RESET_ALL
+        elif current_player == 2:
+            current_player_colored = Fore.MAGENTA + 'O' + Style.RESET_ALL
+        print(f"Current Player: {current_player_colored}")
         played = False
 
         while not played:
-            column_choice = int(input("What column do you want to play? (0, 1, 2): "))
-            row_choice = int(input("What row do you want to play? (0, 1, 2): "))
+            column_choice = int(input("What column do you want to play? "))
+            row_choice = int(input("What row do you want to play? "))
             game, played = game_board(game, current_player, row_choice, column_choice)
 
-        if win(game):
+        if win():
             game_won = True
             again = input("The game is over, would you like to play again? (y/n): ")
             if again.lower() == "y":
                 print("YES SIR!, just let me restart the game for you.")
             elif again.lower() == "n":
-                print("-------Bye :(-------")
+                print("Game closed")
                 play = False
             else:
                 print("Not a valid answer, so...see you later.")
