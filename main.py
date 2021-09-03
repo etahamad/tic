@@ -80,7 +80,16 @@ def game_board(game_map, player=0, row=0, column=0, just_display=False):
 play = True
 players = [1, 2]
 while play:
-    game_size = int(input("What size do you want for your xo game? ex.2, 3, 4: "))
+    while True:
+        check_game_size = input("What size do you want for your xo game? ex.2, 3, 4: ")
+        if check_game_size.isdigit():
+            if int(check_game_size) > 2:
+                game_size = int(check_game_size)
+                break
+            else:
+                print("Please enter a number bigger than 1")
+        else:
+            print("Please enter a number")
     game = [[0 for i in range(game_size)] for i in range(game_size)]
     game_won = False
     game, _ = game_board(game, just_display=True)
