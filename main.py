@@ -83,7 +83,7 @@ while play:
     while True:
         check_game_size = input("What size do you want for your xo game? ex.2, 3, 4: ")
         if check_game_size.isdigit():
-            if int(check_game_size) > 2:
+            if int(check_game_size) > 1:
                 game_size = int(check_game_size)
                 break
             else:
