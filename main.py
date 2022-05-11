@@ -30,7 +30,7 @@ def win():
     for ix in range(len(game)):  # ix is index
         diags.append(game[ix][ix])
     if all_same(diags):
-        print(f"Player {diags[0]} is the winner diagonally (\\) ")
+        print(f"Player {diags[0]} is the winner diagonally (\) ")
         return True
 
     # Vertical win
