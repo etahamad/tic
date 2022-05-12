@@ -36,15 +36,13 @@ def win():
     # Vertical win
     for col in range(len(game)):
         check = []
-
         for row in game:
             check.append(row[col])
-
         if all_same(check):
-            print(f"Player {check[0]} is the winner vertically (|) ")
+            print(f"Player {check[0]} is the winner vertically (|)")
             return True
 
-        return False
+    return False
 
 
 def game_board(game_map, player=0, row=0, column=0, just_display=False):
