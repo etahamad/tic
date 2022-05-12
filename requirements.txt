@@ -1,2 +1,2 @@
-itertools
+more-itertools
 colorama
