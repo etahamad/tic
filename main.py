@@ -81,15 +81,14 @@ play = True
 players = [1, 2]
 while play:
     while True:
-        check_game_size = input("What size do you want for your xo game? ex.2, 3, 4: ")
-        if check_game_size.isdigit():
-            if int(check_game_size) > 1:
-                game_size = int(check_game_size)
-                break
-            else:
-                print("Please enter a number bigger than 1")
+        check_game_size = input("What size do you want for your xo game? ex: 2, 3, 4: ")
+        # take only numbers greater than 1
+        if check_game_size.isdigit() and int(check_game_size) > 1:
+            game_size = int(check_game_size)
+            break
         else:
-            print("Please enter a number")
+            print(Fore.YELLOW + 'Please enter a number greater than 1!' + Style.RESET_ALL)
+
     game = [[0 for i in range(game_size)] for i in range(game_size)]
     game_won = False
     game, _ = game_board(game, just_display=True)
