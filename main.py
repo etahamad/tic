@@ -80,7 +80,6 @@ players = [1, 2]
 while play:
     while True:
         check_game_size = input("What size do you want for your xo game? ex: 2, 3, 4: ")
-        # take only numbers greater than 1
         if check_game_size.isdigit() and int(check_game_size) > 1:
             game_size = int(check_game_size)
             break
