@@ -83,8 +83,7 @@ while play:
         if check_game_size.isdigit() and int(check_game_size) > 1:
             game_size = int(check_game_size)
             break
-        else:
-            print(Fore.YELLOW + 'Please enter a number greater than 1!' + Style.RESET_ALL)
+        print(Fore.YELLOW + 'Please enter a number greater than 1!' + Style.RESET_ALL)
 
     game = [[0 for i in range(game_size)] for i in range(game_size)]
     game_won = False
